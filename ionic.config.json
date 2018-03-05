@@ -1,8 +1,0 @@
-{
-  "name": "building-stones-walk",
-  "app_id": "a366080d",
-  "type": "ionic-angular",
-  "integrations": {
-    "cordova": {}
-  }
-}
