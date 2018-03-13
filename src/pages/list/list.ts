@@ -4,10 +4,9 @@ import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-list',
-  template: `list.html
-  `
+  template: `list.html`
 })
 export class ListPage {
-  
+
 }
 
