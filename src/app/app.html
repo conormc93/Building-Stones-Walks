@@ -1,15 +1,19 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>Locations</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
+    <ion-list inset>
+      <ion-item *ngFor="let building of buildings">
+        <h2>{{building.id}}</h2>
+        <p>{{building.name}}</p>
+        <p>{{building.location}}</p>
+        <p>{{building.lat}}</p>
+        <p>{{building.lng}}</p>
+      </ion-item>
     </ion-list>
   </ion-content>
 
