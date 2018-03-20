@@ -12,9 +12,7 @@ export class RestProvider {
 
   apiUrl = 'https://my-json-server.typicode.com/conormc93/db';
 
-  constructor(public http: HttpClient) {
-    console.log('Hello RestProvider Provider');
-  }
+  constructor(public http: HttpClient) { }
 
   getBuildings() {
     return new Promise(resolve => {
@@ -25,6 +23,5 @@ export class RestProvider {
       });
     });
   }
-
-  
+ 
 }
