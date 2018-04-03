@@ -86,6 +86,8 @@
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyDmc4BWQIoKTGiUZnOUKwPgvgbNnpHNQjQ" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyATFzXNdNnLYVSDZ1hGkJCrqtrt9vLEHE4" />
     </plugin>
-    <engine name="android" spec="~7.0.0" />
     <allow-navigation href="http://10.12.15.4:8100" />
+    <engine name="android" spec="~7.0.0" />
+    <engine name="ios" spec="~4.5.4" />
+    <engine name="browser" spec="~5.0.3" />
 </widget>
