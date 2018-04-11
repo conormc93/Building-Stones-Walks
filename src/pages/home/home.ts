@@ -17,66 +17,78 @@ import {
   templateUrl: 'home.html'
 })
 
-export class HomePage {
+export class HomePage 
+{
 
-  @ViewChild('mapCanvas') mapCanvas: ElementRef;
+  @ViewChild('mapCanvas')
+  mapCanvas: ElementRef;
   map: GoogleMap;
   buildings: any;
 
-  constructor(public navCtrl: NavController, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public restProvider: RestProvider)
+  {
     this.getBuildings();
   }
 
-  ionViewDidLoad() {
-    this.loadMap();
-   }
-
-
-  loadMap(){
-    let mapOptions: GoogleMapOptions = 
+  ionViewDidLoad()
   {
-    camera: {
-      target: {
-        lat: 43.0741904,
-        lng: -89.3809802
-      },
-      zoom: 18,
-      tilt: 30
-    }
-  };
-  this.map = GoogleMaps.create(this.mapCanvas.nativeElement, mapOptions);
+    this.loadMap();
+  }
 
-  // Wait the MAP_READY before using any methods.
-  this.map.one(GoogleMapsEvent.MAP_READY)
-  .then(() => {
-    console.log('Map is ready!');
 
-    // Now you can use all methods safely.
-    this.map.addMarker({
+  loadMap()
+  {
+    let mapOptions: GoogleMapOptions = 
+    {
+      camera:
+      {
+        target:
+        {
+          lat: 43.0741904,
+          lng: -89.3809802
+        },
+        zoom: 18,
+        tilt: 30
+      }
+    };//end mapOptions
+    
+    this.map = GoogleMaps.create(this.mapCanvas.nativeElement, mapOptions);
+    
+    // Wait the MAP_READY before using any methods.
+    this.map.one(GoogleMapsEvent.MAP_READY).then(() =>
+    {
+      console.log('Map is ready!');
+      
+      // Now you can use all methods safely.
+      this.map.addMarker(
+      {
         title: 'Ionic',
         icon: 'blue',
         animation: 'DROP',
-        position: {
+        position: 
+        {
           lat: 43.0741904,
           lng: -89.3809802
         }
-      })
-      .then(marker => {
-        marker.on(GoogleMapsEvent.MARKER_CLICK)
-          .subscribe(() => {
+      }).then(marker => 
+        {
+          marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => 
+          {
             alert('clicked');
           });
+        });
       });
+  }//end loadMap
 
-  });
-  }
+  getBuildings()
+  { 
+    this.restProvider.getBuildings().then(data =>
+      {
+        this.buildings = data;
+        console.log(this.buildings);
+      });
+  }//end getBuildings
 
-getBuildings() { 
-  this.restProvider.getBuildings()
-    .then(data => {
-      this.buildings = data;
-      console.log(this.buildings);
-    });
-  }
-}
+
+}//end HomePage
 
