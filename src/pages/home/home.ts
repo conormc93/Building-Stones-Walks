@@ -2,7 +2,15 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 
-declare var google;
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker
+ } from '@ionic-native/google-maps';
 
 @Component({
   selector: 'page-home',
@@ -11,11 +19,9 @@ declare var google;
 
 export class HomePage {
 
-  @ViewChild('mapCanvas') mapElement: ElementRef;
-  map: any;
+  @ViewChild('mapCanvas') mapCanvas: ElementRef;
+  map: GoogleMap;
   buildings: any;
-  directionsService = new google.maps.DirectionsService;
-  directionsDisplay = new google.maps.DirectionsRenderer;
 
   constructor(public navCtrl: NavController, public restProvider: RestProvider) {
     this.getBuildings();
@@ -25,14 +31,44 @@ export class HomePage {
     this.loadMap();
    }
 
-  loadMap() {
 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, {
-      zoom: 7,
-      center: {lat: 41.85, lng: -87.65}
-    });
+  loadMap(){
+    let mapOptions: GoogleMapOptions = 
+  {
+    camera: {
+      target: {
+        lat: 43.0741904,
+        lng: -89.3809802
+      },
+      zoom: 18,
+      tilt: 30
+    }
+  };
+  this.map = GoogleMaps.create(this.mapCanvas.nativeElement, mapOptions);
 
-    this.directionsDisplay.setMap(this.map);
+  // Wait the MAP_READY before using any methods.
+  this.map.one(GoogleMapsEvent.MAP_READY)
+  .then(() => {
+    console.log('Map is ready!');
+
+    // Now you can use all methods safely.
+    this.map.addMarker({
+        title: 'Ionic',
+        icon: 'blue',
+        animation: 'DROP',
+        position: {
+          lat: 43.0741904,
+          lng: -89.3809802
+        }
+      })
+      .then(marker => {
+        marker.on(GoogleMapsEvent.MARKER_CLICK)
+          .subscribe(() => {
+            alert('clicked');
+          });
+      });
+
+  });
   }
 
 getBuildings() { 
