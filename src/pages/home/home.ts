@@ -11,6 +11,10 @@ import {
   MarkerOptions,
   Marker
  } from '@ionic-native/google-maps';
+ 
+ import { Geolocation } from '@ionic-native/geolocation';
+
+ declare var google: any;
 
 @Component({
   selector: 'page-home',
@@ -24,60 +28,43 @@ export class HomePage
   mapCanvas: ElementRef;
   map: GoogleMap;
   buildings: any;
+  markers = [];
 
-  constructor(public navCtrl: NavController, public restProvider: RestProvider)
+  constructor(public navCtrl: NavController, public restProvider: RestProvider, public geolocation: Geolocation)
   {
     this.getBuildings();
   }
 
   ionViewDidLoad()
   {
-    this.loadMap();
+    setTimeout(() => 
+    {
+      this.loadMap();
+    }, 1500);
+
   }
 
 
   loadMap()
   {
-    let mapOptions: GoogleMapOptions = 
-    {
-      camera:
-      {
-        target:
-        {
-          lat: 43.0741904,
-          lng: -89.3809802
-        },
-        zoom: 18,
-        tilt: 30
-      }
-    };//end mapOptions
-    
-    this.map = GoogleMaps.create(this.mapCanvas.nativeElement, mapOptions);
-    
-    // Wait the MAP_READY before using any methods.
-    this.map.one(GoogleMapsEvent.MAP_READY).then(() =>
-    {
-      console.log('Map is ready!');
-      
-      // Now you can use all methods safely.
-      this.map.addMarker(
-      {
-        title: 'Ionic',
-        icon: 'blue',
-        animation: 'DROP',
-        position: 
-        {
-          lat: 43.0741904,
-          lng: -89.3809802
-        }
-      }).then(marker => 
-        {
-          marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => 
-          {
-            alert('clicked');
-          });
-        });
+    this.geolocation.getCurrentPosition({ maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }).then((resp) => {
+      let mylocation = new google.maps.LatLng(resp.coords.latitude,resp.coords.longitude);
+      this.map = new google.maps.Map(this.mapCanvas.nativeElement, {
+        zoom: 15,
+        center: mylocation
       });
+    });
+    let watch = this.geolocation.watchPosition();
+    watch.subscribe((data) => {
+      this.deleteMarkers();
+      let updatelocation = new google.maps.LatLng(data.coords.latitude,data.coords.longitude);
+      let image = 'assets/imgs/blue-bike.png';
+      this.addMarker(updatelocation,image);
+      this.setMapOnAll(this.map);
+    });
+    
+    //this.map = GoogleMaps.create(this.mapCanvas.nativeElement);
+    
   }//end loadMap
 
   getBuildings()
@@ -89,6 +76,29 @@ export class HomePage
       });
   }//end getBuildings
 
+  addMarker(location, image) {
+    let marker = new google.maps.Marker({
+      position: location,
+      map: this.map,
+      icon: image
+    });
+    this.markers.push(marker);
+  }
+  
+  setMapOnAll(map) {
+    for (var i = 0; i < this.markers.length; i++) {
+      this.markers[i].setMap(map);
+    }
+  }
+  
+  clearMarkers() {
+    this.setMapOnAll(null);
+  }
+  
+  deleteMarkers() {
+    this.clearMarkers();
+    this.markers = [];
+  }
 
 }//end HomePage
 
