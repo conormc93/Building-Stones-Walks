@@ -85,10 +85,10 @@
     <allow-navigation href="http://10.12.15.4:8100" />
     <engine name="ios" spec="~4.5.4" />
     <engine name="browser" spec="~5.0.3" />
-    <engine name="android" spec="~7.0.0" />
     <plugin name="cordova-plugin-googlemaps" spec="^2.2.9">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyDmc4BWQIoKTGiUZnOUKwPgvgbNnpHNQjQ" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyATFzXNdNnLYVSDZ1hGkJCrqtrt9vLEHE4" />
     </plugin>
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
+    <engine name="android" spec="~7.0.0" />
 </widget>
