@@ -9,7 +9,8 @@ import {
   GoogleMapOptions,
   CameraPosition,
   MarkerOptions,
-  Marker
+  Marker,
+  LatLng
  } from '@ionic-native/google-maps';
  
  import { Geolocation } from '@ionic-native/geolocation';
@@ -47,23 +48,47 @@ export class HomePage
 
   loadMap()
   {
+    
     this.geolocation.getCurrentPosition({ maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }).then((resp) => {
-      let mylocation = new google.maps.LatLng(resp.coords.latitude,resp.coords.longitude);
-      this.map = new google.maps.Map(this.mapCanvas.nativeElement, {
-        zoom: 15,
-        center: mylocation
-      });
+      
+      this.map = GoogleMaps.create(this.mapCanvas.nativeElement)
+
+      //wait for this to run any method
+      this.map.one(GoogleMapsEvent.MAP_READY).then((data: any) => {
+
+        let testMarker: LatLng = new LatLng(53.277737,-9.062452);
+
+        let userLocation = {
+          target: new LatLng(resp.coords.latitude,resp.coords.longitude),
+          zoom: 17
+        };
+
+        this.map.animateCamera(userLocation);
+
+        let markerOptions: MarkerOptions = {
+          position: testMarker,
+          icon: "assets/images/icons8-Marker-64.png",
+          title: 'THIS IS A TEST'
+        };
+  
+        const marker = this.map.addMarker(markerOptions)
+          .then((marker: Marker) => {
+            marker.showInfoWindow();
+        });
+      })
     });
+
+    //does this return updated location
     let watch = this.geolocation.watchPosition();
     watch.subscribe((data) => {
       this.deleteMarkers();
-      let updatelocation = new google.maps.LatLng(data.coords.latitude,data.coords.longitude);
+      let updatelocation = new LatLng(data.coords.latitude,data.coords.longitude);
       let image = 'assets/imgs/blue-bike.png';
       this.addMarker(updatelocation,image);
       this.setMapOnAll(this.map);
     });
     
-    //this.map = GoogleMaps.create(this.mapCanvas.nativeElement);
+    
     
   }//end loadMap
 
