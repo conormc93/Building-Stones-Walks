@@ -31,9 +31,12 @@ export class HomePage
   buildings: any;
   markers = [];
 
+  
+  
+
   constructor(public navCtrl: NavController, public restProvider: RestProvider, public geolocation: Geolocation)
   {
-    this.getBuildings();
+  
   }
 
   ionViewDidLoad()
@@ -41,23 +44,40 @@ export class HomePage
     setTimeout(() => 
     {
       this.loadMap();
-    }, 1500);
+    }, 2000);
 
+    this.getBuildings();
   }
 
 
   loadMap()
   {
     
-    this.geolocation.getCurrentPosition({ maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }).then((resp) => {
+    this.geolocation.getCurrentPosition({ maximumAge: 0, timeout: 5000, enableHighAccuracy: true }).then((resp) => {
       
       this.map = GoogleMaps.create(this.mapCanvas.nativeElement)
 
       //wait for this to run any method
       this.map.one(GoogleMapsEvent.MAP_READY).then((data: any) => {
 
-        let testMarker: LatLng = new LatLng(53.277737,-9.062452);
+        let i: number;
+        for(i=0; i<this.buildings.length;i++){
 
+          let testMarker: LatLng = new LatLng(this.buildings[i].lat,this.buildings[i].lng);
+
+          let markerOptions: MarkerOptions = {
+            position: testMarker,
+            icon: "assets/images/icons8-Marker-64.png",
+            title: 'THIS IS A TEST'
+          };
+    
+          const marker = this.map.addMarker(markerOptions)
+            .then((marker: Marker) => {
+              marker.showInfoWindow();
+          });
+
+        }//end for loop
+      
         let userLocation = {
           target: new LatLng(resp.coords.latitude,resp.coords.longitude),
           zoom: 17
@@ -65,27 +85,15 @@ export class HomePage
 
         this.map.animateCamera(userLocation);
 
-        let markerOptions: MarkerOptions = {
-          position: testMarker,
-          icon: "assets/images/icons8-Marker-64.png",
-          title: 'THIS IS A TEST'
-        };
-  
-        const marker = this.map.addMarker(markerOptions)
-          .then((marker: Marker) => {
-            marker.showInfoWindow();
-        });
       })
     });
 
-    //does this return updated location
+    //does this return updated location??
     let watch = this.geolocation.watchPosition();
     watch.subscribe((data) => {
-      this.deleteMarkers();
       let updatelocation = new LatLng(data.coords.latitude,data.coords.longitude);
       let image = 'assets/imgs/blue-bike.png';
       this.addMarker(updatelocation,image);
-      this.setMapOnAll(this.map);
     });
     
     
@@ -110,20 +118,7 @@ export class HomePage
     this.markers.push(marker);
   }
   
-  setMapOnAll(map) {
-    for (var i = 0; i < this.markers.length; i++) {
-      this.markers[i].setMap(map);
-    }
-  }
   
-  clearMarkers() {
-    this.setMapOnAll(null);
-  }
-  
-  deleteMarkers() {
-    this.clearMarkers();
-    this.markers = [];
-  }
 
 }//end HomePage
 
