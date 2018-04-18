@@ -65,10 +65,12 @@ export class HomePage
 
           let testMarker: LatLng = new LatLng(this.buildings[i].lat,this.buildings[i].lng);
 
+
+
           let markerOptions: MarkerOptions = {
             position: testMarker,
             icon: "assets/images/icons8-Marker-64.png",
-            title: 'THIS IS A TEST'
+            title: this.buildings[i].name
           };
     
           const marker = this.map.addMarker(markerOptions)
@@ -76,25 +78,52 @@ export class HomePage
               marker.showInfoWindow();
           });
 
+
+          let userLocation = {
+            position: new LatLng(resp.coords.latitude,resp.coords.longitude),
+            icon: "assets/images/icons8-Marker-64.png",
+            title: 'User',
+            zoom: 17
+          };
+
+          const userMarker = this.map.addMarker(userLocation)
+            .then((marker: Marker) => {
+              marker.showInfoWindow();
+            });
+
+          this.map.animateCamera(userLocation);
+
+          console.log(this.buildings[i].name);
+
         }//end for loop
       
-        let userLocation = {
-          target: new LatLng(resp.coords.latitude,resp.coords.longitude),
-          zoom: 17
-        };
+          //does this return updated location??
+        let watch = this.geolocation.watchPosition();
+        watch.subscribe((data) => {
 
-        this.map.animateCamera(userLocation);
+          let userLocation = {
+            position: new LatLng(resp.coords.latitude,resp.coords.longitude),
+            icon: "assets/images/icons8-Marker-64.png",
+            title: 'User',
+            zoom: 17
+          };
+          
+          this.map.animateCamera(userLocation);
+
+
+          let updateLocation = userLocation;
+          let image = 'assets/imgs/blue-bike.png';
+          
+          const userMarker = this.map.addMarker(userLocation)
+            .then((marker: Marker) => {
+              marker.showInfoWindow();
+            });
+        });
 
       })
     });
 
-    //does this return updated location??
-    let watch = this.geolocation.watchPosition();
-    watch.subscribe((data) => {
-      let updatelocation = new LatLng(data.coords.latitude,data.coords.longitude);
-      let image = 'assets/imgs/blue-bike.png';
-      this.addMarker(updatelocation,image);
-    });
+    
     
     
     

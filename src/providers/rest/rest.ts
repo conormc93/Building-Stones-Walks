@@ -17,7 +17,7 @@ export class RestProvider {
   getBuildings() {
     return new Promise(resolve => {
       this.http.get(this.apiUrl+'/buildings').subscribe(data => {
-        resolve(data);
+         resolve(data);
       }, err => {
         console.log(err);
       });
