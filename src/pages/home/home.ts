@@ -10,13 +10,15 @@ import {
   CameraPosition,
   MarkerOptions,
   Marker,
-  LatLng
+  LatLng,
+  Polyline,
+  PolylineOptions
  } from '@ionic-native/google-maps';
  
  import { Geolocation } from '@ionic-native/geolocation';
 
  declare var google: any;
-
+ 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -31,12 +33,9 @@ export class HomePage
   buildings: any;
   markers = [];
 
-  
-  
-
   constructor(public navCtrl: NavController, public restProvider: RestProvider, public geolocation: Geolocation)
   {
-  
+    this.getBuildings();
   }
 
   ionViewDidLoad()
@@ -44,28 +43,26 @@ export class HomePage
     setTimeout(() => 
     {
       this.loadMap();
-    }, 2000);
-
-    this.getBuildings();
+    }, 1000);
   }
 
 
   loadMap()
   {
     
-    this.geolocation.getCurrentPosition({ maximumAge: 0, timeout: 5000, enableHighAccuracy: true }).then((resp) => {
+    this.geolocation.getCurrentPosition({ maximumAge: 0, timeout: 5000, enableHighAccuracy: true }).then((resp) =>
+    {
       
       this.map = GoogleMaps.create(this.mapCanvas.nativeElement)
 
       //wait for this to run any method
       this.map.one(GoogleMapsEvent.MAP_READY).then((data: any) => {
 
-        let i: number;
-        for(i=0; i<this.buildings.length;i++){
+        
+        for(let i=0; i<this.buildings.length;i++)
+        {
 
           let testMarker: LatLng = new LatLng(this.buildings[i].lat,this.buildings[i].lng);
-
-
 
           let markerOptions: MarkerOptions = {
             position: testMarker,
@@ -78,29 +75,15 @@ export class HomePage
               marker.showInfoWindow();
           });
 
-
-          let userLocation = {
-            position: new LatLng(resp.coords.latitude,resp.coords.longitude),
-            icon: "assets/images/icons8-Marker-64.png",
-            title: 'User',
-            zoom: 17
-          };
-
-          const userMarker = this.map.addMarker(userLocation)
-            .then((marker: Marker) => {
-              marker.showInfoWindow();
-            });
-
-          this.map.animateCamera(userLocation);
-
-          console.log(this.buildings[i].name);
-
         }//end for loop
-      
-          //does this return updated location??
-        let watch = this.geolocation.watchPosition();
-        watch.subscribe((data) => {
 
+        //Assign a variable to watch the devices location
+        let watch = this.geolocation.watchPosition();
+
+        //Obersavable
+        //We observe any changes to the watch variable
+        watch.subscribe((data) => {
+          
           let userLocation = {
             position: new LatLng(resp.coords.latitude,resp.coords.longitude),
             icon: "assets/images/icons8-Marker-64.png",
@@ -110,23 +93,17 @@ export class HomePage
           
           this.map.animateCamera(userLocation);
 
+          const userMarker = this.map.addMarker(userLocation).then((marker: Marker) => 
+          {
+            marker.showInfoWindow();
+          });
 
-          let updateLocation = userLocation;
-          let image = 'assets/imgs/blue-bike.png';
-          
-          const userMarker = this.map.addMarker(userLocation)
-            .then((marker: Marker) => {
-              marker.showInfoWindow();
-            });
-        });
+        });//end of watch observable
 
-      })
-    });
+      })//end of MAP_READY
 
-    
-    
-    
-    
+    });//end of GetCurrentPosition
+
   }//end loadMap
 
   getBuildings()
@@ -134,7 +111,6 @@ export class HomePage
     this.restProvider.getBuildings().then(data =>
       {
         this.buildings = data;
-        console.log(this.buildings);
       });
   }//end getBuildings
 
@@ -146,8 +122,6 @@ export class HomePage
     });
     this.markers.push(marker);
   }
-  
-  
 
 }//end HomePage
 
