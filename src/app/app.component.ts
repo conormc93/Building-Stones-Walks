@@ -24,7 +24,6 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage }
     ];
-
   }
 
   initializeApp() {
@@ -45,9 +44,7 @@ export class MyApp {
   getBuildings(){
     this.restProvider.getBuildings()
     .then(data => {
-      this.buildings = data;
-      console.log(this.buildings);
-      
+      this.buildings = data; 
     });
   }
 }

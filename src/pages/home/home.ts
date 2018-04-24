@@ -12,7 +12,8 @@ import {
   Marker,
   LatLng,
   Polyline,
-  PolylineOptions
+  PolylineOptions,
+  ILatLng
  } from '@ionic-native/google-maps';
  
  import { Geolocation } from '@ionic-native/geolocation';
@@ -32,6 +33,7 @@ export class HomePage
   map: GoogleMap;
   buildings: any;
   markers = [];
+  polylines = [];
 
   constructor(public navCtrl: NavController, public restProvider: RestProvider, public geolocation: Geolocation)
   {
@@ -58,7 +60,6 @@ export class HomePage
       //wait for this to run any method
       this.map.one(GoogleMapsEvent.MAP_READY).then((data: any) => {
 
-        
         for(let i=0; i<this.buildings.length;i++)
         {
 
@@ -75,7 +76,33 @@ export class HomePage
               marker.showInfoWindow();
           });
 
+          console.log("Parsing Building Lat: " + parseFloat(this.buildings[i].lat));
+
+          if(i + 1 < 10)
+          {
+
+            let polylinePath = [
+              {lat: parseFloat(this.buildings[i].lat), lng: parseFloat(this.buildings[i].lng)},
+              {lat: parseFloat(this.buildings[i+1].lat), lng: parseFloat(this.buildings[i+1].lng)},
+            ];
+
+            let polylineOptions: PolylineOptions = {
+              points: polylinePath,
+              strokeColor: "#ff0000",
+              strokeOpacity: 0.6,
+              strokeWeight: 5
+            };
+  
+            const polyline = this.map.addPolyline(polylineOptions)
+              .then((polyLine: Polyline) => {
+                
+            });
+
+
+          }
+         
         }//end for loop
+
 
         //Assign a variable to watch the devices location
         let watch = this.geolocation.watchPosition();
@@ -99,12 +126,22 @@ export class HomePage
           });
 
         });//end of watch observable
-
       })//end of MAP_READY
-
     });//end of GetCurrentPosition
-
   }//end loadMap
+
+addPolylines(polylinePath){
+  let polyLine = new google.maps.Polyline({
+    points: polylinePath,
+    map: this.map,
+    strokeColor: "#ff0000",
+    strokeOpacity: 0.6,
+    strokeWeight: 5
+  });
+
+  this.polylines.push(polyLine);
+}
+
 
   getBuildings()
   { 
@@ -122,6 +159,5 @@ export class HomePage
     });
     this.markers.push(marker);
   }
-
 }//end HomePage
 
