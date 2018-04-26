@@ -7,8 +7,8 @@
 
   <ion-content>
     <ion-list inset>
-      <ion-item *ngFor="let building of buildings">
-        <h3>{{building.name}}</h3>
+      <ion-item *ngFor="let p of pages" (tap)="openPage(p)">
+          {{p.title}}
       </ion-item>
     </ion-list>
   </ion-content>

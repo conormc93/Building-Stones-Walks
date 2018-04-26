@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
+import {QuadranglePage} from '../../pages/quadrangle/quadrangle'
 
 import {
   GoogleMaps,
@@ -13,7 +14,6 @@ import {
   LatLng,
   Polyline,
   PolylineOptions,
-  ILatLng
  } from '@ionic-native/google-maps';
  
  import { Geolocation } from '@ionic-native/geolocation';
@@ -30,7 +30,11 @@ export class HomePage
 
   @ViewChild('mapCanvas')
   mapCanvas: ElementRef;
-  map: GoogleMap;
+
+  @ViewChild('directionsPanel') 
+  directionsPanel: ElementRef;
+
+  map: any;
   buildings: any;
   markers = [];
   polylines = [];
@@ -46,6 +50,7 @@ export class HomePage
     {
       this.loadMap();
     }, 1000);
+    
   }
 
 
@@ -60,6 +65,7 @@ export class HomePage
       //wait for this to run any method
       this.map.one(GoogleMapsEvent.MAP_READY).then((data: any) => {
 
+        //display each marker
         for(let i=0; i<this.buildings.length;i++)
         {
 
@@ -76,8 +82,7 @@ export class HomePage
               marker.showInfoWindow();
           });
 
-          console.log("Parsing Building Lat: " + parseFloat(this.buildings[i].lat));
-
+          //set the polyline path
           if(i + 1 < 10)
           {
 
@@ -97,9 +102,7 @@ export class HomePage
               .then((polyLine: Polyline) => {
                 
             });
-
-
-          }
+          }//end if
          
         }//end for loop
 
@@ -130,18 +133,17 @@ export class HomePage
     });//end of GetCurrentPosition
   }//end loadMap
 
-addPolylines(polylinePath){
-  let polyLine = new google.maps.Polyline({
-    points: polylinePath,
-    map: this.map,
-    strokeColor: "#ff0000",
-    strokeOpacity: 0.6,
-    strokeWeight: 5
-  });
+  addPolylines(polylinePath){
+    let polyLine = new google.maps.Polyline({
+      points: polylinePath,
+      map: this.map,
+      strokeColor: "#ff0000",
+      strokeOpacity: 0.6,
+      strokeWeight: 5
+    });
 
-  this.polylines.push(polyLine);
-}
-
+    this.polylines.push(polyLine);
+  }
 
   getBuildings()
   { 
@@ -159,5 +161,6 @@ addPolylines(polylinePath){
     });
     this.markers.push(marker);
   }
+
 }//end HomePage
 
