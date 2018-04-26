@@ -3,28 +3,28 @@
 
 #### Developed By:
 
-*Conor McGrath (Galway-Mayo Institute Of Technology)*  
-*Aaron Andy Healy (Galway-Mayo Institute Of Technology)*  
-*Keith Higgins (Galway-Mayo Institute Of Technology)*
+- Conor McGrath (Galway-Mayo Institute Of Technology)*  
+= Aaron Andy Healy (Galway-Mayo Institute Of Technology)*  
+= Keith Higgins (Galway-Mayo Institute Of Technology)*
 
 ---
 
 #### Collaborators:
-*Dr. Brian McGinley (Galway-Mayo Institute Of Technology)*
-*Prof Martin Feely (National University of Galway)*
-*Dr. Alessandro Costanzo (National University of Galway)*
-*Michael Quinn (Galway Civic Trust)*
+= Dr. Brian McGinley (Galway-Mayo Institute Of Technology)*
+= Prof Martin Feely (National University of Galway)*
+= Dr. Alessandro Costanzo (National University of Galway)*
+= Michael Quinn (Galway Civic Trust)*
 
 ---
 
 #### Index:
-*Project Summary................................................................................................1* 
-*Installation & Configuration................................................................................2*
-*Download ZIP & Run on Android device......................................................2.1*
-*Git Clone & Run on Android device.............................................................2.2*
-*Support..............................................................................................................3*
-*Research & Collaboration..................................................................................4*
-*Resources..........................................................................................................5*
+= Project Summary................................................................................................1* 
+= Installation & Configuration................................................................................2*
+= Download ZIP & Run on Android device......................................................2.1*
+= Git Clone & Run on Android device.............................................................2.2*
+= Support..............................................................................................................3*
+= Research & Collaboration..................................................................................4*
+= Resources..........................................................................................................5*
 
 ---
 
