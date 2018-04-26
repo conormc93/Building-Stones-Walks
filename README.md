@@ -19,13 +19,13 @@
 ---
 
 #### Index:
-*Project Summary....................1*   
-*Installation & Configuration....................2*    
+*Project Summary.........................................1*   
+*Installation & Configuration............................2*    
 *Download ZIP & Run on Android device....................2.1*    
-*Git Clone & Run on Android device....................2.2*    
-*Support....................3*   
-*Research & Collaboration....................4*  
-*Resources....................5*  
+*Git Clone & Run on Android device.......................2.2*    
+*Support.................................................3*   
+*Research & Collaboration................................4*  
+*Resources...............................................5*  
 
 
 ---
