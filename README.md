@@ -10,23 +10,15 @@
 ---
 
 #### Collaborators:
-<<<<<<< HEAD
 
 *Dr. Brian McGinley (Galway-Mayo Institute Of Technology)*  
 *Prof Martin Feely (National University of Galway)*  
 *Dr. Alessandro Costanzo (National University of Galway)*  
 *Michael Quinn (Galway Civic Trust)*
-=======
-- Dr. Brian McGinley (Galway-Mayo Institute Of Technology)
-- Prof Martin Feely (National University of Galway)
-- Dr. Alessandro Costanzo (National University of Galway)
-- Michael Quinn (Galway Civic Trust)
->>>>>>> 5789ad1c6fdbd3b6d551ba148f7f5e3c243548ed
 
 ---
 
 #### Index:
-<<<<<<< HEAD
 *Project Summary................................................................................................1* 
 *Installation & Configuration................................................................................2*  
 *Download ZIP & Run on Android device......................................................2.1*  
@@ -34,15 +26,6 @@
 *Support..............................................................................................................3*  
 *Research & Collaboration..................................................................................4*
 *Resources..........................................................................................................5*
-=======
-- Project Summary................................................................................................1
-- Installation & Configuration................................................................................2
-- Download ZIP & Run on Android device......................................................2.1
-- Git Clone & Run on Android device.............................................................2.2
-- Support..............................................................................................................3
-- Research & Collaboration..................................................................................4
-- Resources..........................................................................................................5
->>>>>>> 5789ad1c6fdbd3b6d551ba148f7f5e3c243548ed
 
 
 ---
@@ -128,7 +111,6 @@ chrome://inspect/#devices
 ### Resources (5)
 ---
 
-<<<<<<< HEAD
 *+ Dr Brian McGinley - Galway - Mayo Institute of Technology*  
 *+ (Guide Book - Galway City Building Stones Walks)*  
 *+ (https://stackoverflow.com/)*  
@@ -140,18 +122,5 @@ chrome://inspect/#devices
 *+ https://symbiotics.co.za/using-observables-in-angular-4-to-get-data-from-an-api-service/()*  
 *+ (https://docs.google.com/presentation/d/1zlkmoSY4AzDJc_P4IqWLnzct41IqHyzGkLeyhlAxMDE/edit#slide=id.gefe7d3b89a139c8_255)*  
 *+ (https://github.com/ionic-team/ionic-native-google-maps/tree/master/documents)*  
-=======
-- Dr Brian McGinley - Galway - Mayo Institute of Technology
-- (Guide Book - Galway City Building Stones Walks)
-- (https://stackoverflow.com/)
-- (https://medium.com/the-web-tub/choosing-the-right-map-integration-for-your-cordova-app-78c2a8f75d50)
-- (https://www.codexworld.com/post-get-json-data-from-php-script-jquery-ajax/)
-- (https://my-json-server.typicode.com/conormc93/db)
-- (https://developers.google.com/maps/documentation/javascript/mysql-to-maps#populating-the-table)
-- (https://cordova.apache.org/docs/en/latest/guide/platforms/android/)
-- https://symbiotics.co.za/using-observables-in-angular-4-to-get-data-from-an-api-service/()
-- (https://docs.google.com/presentation/d/1zlkmoSY4AzDJc_P4IqWLnzct41IqHyzGkLeyhlAxMDE/edit#slide=id.gefe7d3b89a139c8_255)
-- (https://github.com/ionic-team/ionic-native-google-maps/tree/master/documents)
->>>>>>> 5789ad1c6fdbd3b6d551ba148f7f5e3c243548ed
 
 ---
