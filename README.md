@@ -3,9 +3,9 @@
 
 #### Developed By:
 
-- Conor McGrath (Galway-Mayo Institute Of Technology)
-- Aaron Andy Healy (Galway-Mayo Institute Of Technology)  
-- Keith Higgins (Galway-Mayo Institute Of Technology)
+*Conor McGrath (Galway-Mayo Institute Of Technology)*  
+*Aaron Andy Healy (Galway-Mayo Institute Of Technology)*    
+*Keith Higgins (Galway-Mayo Institute Of Technology)*  
 
 ---
 
@@ -19,24 +19,24 @@
 ---
 
 #### Index:
-*Project Summary................................................................................................1*   
-*Installation & Configuration................................................................................2*  
-*Download ZIP & Run on Android device......................................................2.1*  
-*Git Clone & Run on Android device.............................................................2.2*  
-*Support..............................................................................................................3*  
-*Research & Collaboration..................................................................................4*
-*Resources..........................................................................................................5*
+*Project Summary....................1*   
+*Installation & Configuration....................2*    
+*Download ZIP & Run on Android device....................2.1*    
+*Git Clone & Run on Android device....................2.2*    
+*Support....................3*   
+*Research & Collaboration....................4*  
+*Resources....................5*  
 
 
 ---
 ### *Project Summary (1)*
 ---
 
-*Module: 
-Professional Practice in IT*
+*Module:*     
+*Professional Practice in IT*
 
-*Project: 
-Develop a multi platform smartphone application for Galway Civic Trust and the Department of Earth and Ocean Sciences in NUIG. The app would be a self guided tour of various locations around Galway City, using the Ionic Framework ,Angular, and Ionic Native Maps and Geolocation.*
+*Project:*   
+*Develop a multi platform smartphone application for Galway Civic Trust and the Department of Earth and Ocean Sciences in NUIG. The app would be a self guided tour of various locations around Galway City, using the Ionic Framework ,Angular, and Ionic Native Maps and Geolocation.*
 
 ---
 ### *Installation & Configuration: (2)*
@@ -100,7 +100,7 @@ chrome://inspect/#devices
 ### Research & Collaboration (4)
 ---
 
-*Most of the information and examples we could find by ourselves were, Ionic's own documentation, and a few other github repositories to help learn about the Ionic Framework and also learn more about Angular. *
+*Most of the information and examples we could find by ourselves were, Ionic's own documentation, and a few other github repositories to help learn about the Ionic Framework and also learn more about Angular.* 
 
 *We held weekly meetings with our supervisor Dr. Brian McGinley where we discussed the project requirements, and various methodologies we could use throughtout ths project lifecycle.*
 
