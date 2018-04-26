@@ -57,7 +57,7 @@ export class HomePage
   loadMap()
   {
     
-    this.geolocation.getCurrentPosition({ maximumAge: 0, timeout: 5000, enableHighAccuracy: true }).then((resp) =>
+    this.geolocation.getCurrentPosition({ maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }).then((resp) =>
     {
       
       this.map = GoogleMaps.create(this.mapCanvas.nativeElement)
