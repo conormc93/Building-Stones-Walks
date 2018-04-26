@@ -3,17 +3,17 @@
 
 #### Developed By:
 
-- Conor McGrath (Galway-Mayo Institute Of Technology)*  
-= Aaron Andy Healy (Galway-Mayo Institute Of Technology)*  
-= Keith Higgins (Galway-Mayo Institute Of Technology)*
+- Conor McGrath (Galway-Mayo Institute Of Technology)
+= Aaron Andy Healy (Galway-Mayo Institute Of Technology)  
+= Keith Higgins (Galway-Mayo Institute Of Technology)
 
 ---
 
 #### Collaborators:
-= Dr. Brian McGinley (Galway-Mayo Institute Of Technology)*
-= Prof Martin Feely (National University of Galway)*
-= Dr. Alessandro Costanzo (National University of Galway)*
-= Michael Quinn (Galway Civic Trust)*
+= Dr. Brian McGinley (Galway-Mayo Institute Of Technology)
+= Prof Martin Feely (National University of Galway)
+= Dr. Alessandro Costanzo (National University of Galway)
+= Michael Quinn (Galway Civic Trust)
 
 ---
 
